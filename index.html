@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balloon Clicking Game</title>
+<style>
+  .balloon {
+    width: 50px;
+    height: 70px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div id="game-container"></div>
+<p>Score: <span id="score">0</span></p>
+
+<script>
+  const gameContainer = document.getElementById('game-container');
+  const scoreDisplay = document.getElementById('score');
+  let score = 0;
+
+  function spawnBalloon() {
+    const balloon = document.createElement('div');
+    balloon.classList.add('balloon');
+    balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+    balloon.style.top = Math.random() * (window.innerHeight - 70) + 'px';
+
+    balloon.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = score;
+      balloon.remove();
+    });
+
+    gameContainer.appendChild(balloon);
+  }
+
+  function startGame() {
+    setInterval(spawnBalloon, 1000); // Spawns a balloon every second
+  }
+
+  startGame();
+</script>
+</body>
+</html>
