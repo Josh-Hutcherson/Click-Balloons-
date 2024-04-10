@@ -35,7 +35,7 @@
   };
 
   const createImposter = () => {
-    if (Math.random() < 0.5) { // 50% chance of creating an imposter
+    if (Math.random() < 0.2) { // 50% chance of creating an imposter
       const imposter = document.createElement('div');
       imposter.classList.add('imposter');
       imposter.style.backgroundColor = imposterColors[level % imposterColors.length]; // Set imposter color
