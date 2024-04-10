@@ -24,11 +24,16 @@
   let score = 0;
   let level = 1;
   const colors = ['#f1f1f2', '#e1e5f2', '#f2e1f1', '#e2f1f2']; // Array of colors for background
-  const imposterColors = ['#f1f1f1', '#e1e5f1', '#f1e1f1', '#e1f1f1']; // Array of colors for imposter
+  const imposterColors = ['#d1d1d2', '#c1c5d2', '#d2c1d1', '#c2d1d2']; // Slightly darker colors for imposter
 
   const updateDifficulty = () => {
     level++;
-    document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
+    // Randomly decide if the special background should be applied
+    if (Math.random() < 0.01) {
+      document.body.style.backgroundColor = 'url("R.png")'; // Set special background
+    } else {
+      document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
+    }
     // Other difficulty adjustments can be added here
   };
 
