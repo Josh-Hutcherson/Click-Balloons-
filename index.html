@@ -17,6 +17,7 @@
     background-color: #f1f1f1;
     border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.5s; /* Smooth transition for color change */
   }
 </style>
 </head>
@@ -34,6 +35,13 @@
     imposter.classList.add('imposter');
     imposter.style.top = Math.random() * window.innerHeight + 'px';
     imposter.style.left = Math.random() * window.innerWidth + 'px';
+    
+    // Set a timeout to change the color and alert the user
+    setTimeout(() => {
+      imposter.style.backgroundColor = 'red'; // Change color to red
+      alert('I\'m over here!'); // Alert the user
+    }, 15000); // 15000 milliseconds equals 15 seconds
+    
     imposter.onclick = () => {
       alert('You found the imposter!');
       score++;
