@@ -8,13 +8,11 @@
   body {
     margin: 0;
     overflow: hidden;
-    background-color: #f1f1f2;
   }
   .imposter {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-color: #f1f1f1;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.5s; /* Smooth transition for color change */
@@ -25,18 +23,22 @@
 <script>
   let score = 0;
   let level = 1;
+  const colors = ['#f1f1f2', '#e1e5f2', '#f2e1f1', '#e2f1f2']; // Array of colors for background
+  const imposterColors = ['#f1f1f1', '#e1e5f1', '#f1e1f1', '#e1f1f1']; // Array of colors for imposter
+
   const updateDifficulty = () => {
-    // Increase level difficulty here
-    // For example, change shape size or color slightly
+    level++;
+    document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
+    // Other difficulty adjustments can be added here
   };
 
   const createImposter = () => {
     const imposter = document.createElement('div');
     imposter.classList.add('imposter');
+    imposter.style.backgroundColor = imposterColors[level % imposterColors.length]; // Set imposter color
     imposter.style.top = Math.random() * window.innerHeight + 'px';
     imposter.style.left = Math.random() * window.innerWidth + 'px';
     
-    // Set a timeout to change the color and alert the user
     setTimeout(() => {
       imposter.style.backgroundColor = 'red'; // Change color to red
       alert('I\'m over here!'); // Alert the user
@@ -52,6 +54,7 @@
     document.body.appendChild(imposter);
   };
 
+  document.body.style.backgroundColor = colors[0]; // Initial background color
   createImposter(); // Start the game
 </script>
 </body>
