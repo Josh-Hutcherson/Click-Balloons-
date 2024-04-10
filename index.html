@@ -3,47 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Balloon Clicking Game</title>
+<title>Somethings Sus</title>
 <style>
-  .balloon {
-    width: 50px;
-    height: 70px;
-    background-color: red;
-    border-radius: 50%;
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .imposter {
     position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
     cursor: pointer;
   }
 </style>
 </head>
 <body>
-<div id="game-container"></div>
-<p>Score: <span id="score">0</span></p>
-
 <script>
-  const gameContainer = document.getElementById('game-container');
-  const scoreDisplay = document.getElementById('score');
   let score = 0;
+  let level = 1;
+  const updateDifficulty = () => {
+    // Increase level difficulty here
+    // For example, change shape size or color slightly
+  };
 
-  function spawnBalloon() {
-    const balloon = document.createElement('div');
-    balloon.classList.add('balloon');
-    balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    balloon.style.top = Math.random() * (window.innerHeight - 70) + 'px';
-
-    balloon.addEventListener('click', () => {
+  const createImposter = () => {
+    const imposter = document.createElement('div');
+    imposter.classList.add('imposter');
+    imposter.style.top = Math.random() * window.innerHeight + 'px';
+    imposter.style.left = Math.random() * window.innerWidth + 'px';
+    imposter.onclick = () => {
+      alert('You found the imposter!');
       score++;
-      scoreDisplay.textContent = score;
-      balloon.remove();
-    });
+      updateDifficulty();
+      document.body.removeChild(imposter);
+      createImposter(); // Create a new imposter
+    };
+    document.body.appendChild(imposter);
+  };
 
-    gameContainer.appendChild(balloon);
-  }
-
-  function startGame() {
-    setInterval(spawnBalloon, 1000); // Spawns a balloon every second
-  }
-
-  startGame();
+  createImposter(); // Start the game
 </script>
 </body>
 </html>
