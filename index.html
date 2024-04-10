@@ -3,75 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Somethings Sus</title>
+<title>Something Sus</title>
 <style>
-  body {
-    margin: 0;
-    overflow: hidden;
+  .shape {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+    background-color: blue;
   }
-  .imposter {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.5s; /* Smooth transition for gliding */
+  .different {
+    background-color: green;
   }
 </style>
+<script>
+  let round = 1;
+  let impostorRevealed = false;
+
+  function startRound() {
+    impostorRevealed = false;
+    // Reset shapes for the new round
+    // Add logic here to change the number of shapes and the impostor
+  }
+
+  function shapeClicked(isImpostor) {
+    if (isImpostor) {
+      alert("That's not the impostor, you lose!");
+      round = 1;
+      startRound();
+    } else {
+      round++;
+      if (round > 10) {
+        alert("You won! Congrats!");
+        round = 1;
+      }
+      startRound();
+    }
+  }
+
+  function revealImpostor() {
+    if (!impostorRevealed) {
+      impostorRevealed = true;
+      // Logic to reveal the impostor
+      // Change the color of the impostor shape to red and alert the player
+    }
+  }
+
+  window.onload = function() {
+    startRound();
+    // Set a timeout to reveal the impostor after 5 seconds
+    setTimeout(revealImpostor, 5000);
+  };
+</script>
 </head>
 <body>
-<script>
-  let score = 0;
-  let level = 1;
-  let foundImposter = false; // Flag to check if the imposter has been found
-  const colors = ['#f1f1f2', '#e1e5f2', '#f2e1f1', '#e2f1f2']; // Array of colors for background
-  const imposterColors = ['#d1d1d2', '#c1c5d2', '#d2c1d1', '#c2d1d2']; // Slightly darker colors for imposter
-
-  const updateDifficulty = () => {
-    level++;
-    foundImposter = false; // Reset the flag when the level increases
-    document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
-    // Other difficulty adjustments can be added here
-  };
-
-  const createImposter = () => {
-    if (Math.random() < 0.1) { // 10% chance of creating an imposter
-      const imposter = document.createElement('div');
-      imposter.classList.add('imposter');
-      imposter.style.backgroundColor = imposterColors[level % imposterColors.length]; // Set imposter color
-      imposter.style.top = Math.random() * window.innerHeight + 'px';
-      imposter.style.left = Math.random() * window.innerWidth + 'px';
-
-      imposter.onclick = () => {
-        if (!foundImposter) {
-          score++;
-          foundImposter = true; // Set the flag to true as the imposter has been found
-          // Glide the imposter to a new location
-          imposter.style.transform = 'translate(' + Math.random() * window.innerWidth + 'px, ' + Math.random() * window.innerHeight + 'px)';
-          // Delay the removal and recreation of the imposter to allow for the glide effect
-          setTimeout(() => {
-            updateDifficulty();
-            document.body.removeChild(imposter);
-            createImposter(); // Create a new imposter
-          }, 500); // Match the delay with the transition duration
-        }
-      };
-      document.body.appendChild(imposter);
-    }
-  };
-
-  document.body.style.backgroundColor = colors[0]; // Initial background color
-  createImposter(); // Start the game
-
-  // Restart the game after 15 seconds
-  setTimeout(() => {
-    // Reset game state
-    score = 0;
-    level = 1;
-    foundImposter = false;
-    document.body.innerHTML = ''; // Clear existing imposters
-    createImposter(); // Start a new game
-  }, 15000); // 15000 milliseconds equals 15 seconds
-</script>
+  <div id="gameArea">
+    <!-- Generate shapes here -->
+    <div class="shape" onclick="shapeClicked(false)"></div>
+    <div class="shape different" onclick="shapeClicked(true)"></div>
+    <div class="shape" onclick="shapeClicked(false)"></div>
+    <div class="shape" onclick="shapeClicked(false)"></div>
+  </div>
 </body>
 </html>
