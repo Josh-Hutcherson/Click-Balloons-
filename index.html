@@ -30,9 +30,8 @@
     level++;
     // Randomly decide if the special background should be applied
     if (Math.random() < 0.01) {
-      document.body.style.backgroundColor = 'url("R.png")'; // Set special background
-        if (Math.random() < 0.01) {
       document.body.style.backgroundColor = 'url("waitwhat.png")'; // Set special background
+     
     } else {
       document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
     }
