@@ -23,15 +23,16 @@
 <script>
   let score = 0;
   let level = 1;
+  let foundImposter = false; // Flag to check if the imposter has been found
   const colors = ['#f1f1f2', '#e1e5f2', '#f2e1f1', '#e2f1f2']; // Array of colors for background
   const imposterColors = ['#d1d1d2', '#c1c5d2', '#d2c1d1', '#c2d1d2']; // Slightly darker colors for imposter
 
   const updateDifficulty = () => {
     level++;
+    foundImposter = false; // Reset the flag when the level increases
     // Randomly decide if the special background should be applied
     if (Math.random() < 0.01) {
-      document.body.style.backgroundColor = 'url("waitwhat.png")'; // Set special background
-     
+      document.body.style.backgroundColor = 'url("waitwhat.jpg")'; // Set special background
     } else {
       document.body.style.backgroundColor = colors[level % colors.length]; // Change background color
     }
@@ -45,17 +46,23 @@
     imposter.style.top = Math.random() * window.innerHeight + 'px';
     imposter.style.left = Math.random() * window.innerWidth + 'px';
     
-    setTimeout(() => {
-      imposter.style.backgroundColor = 'red'; // Change color to red
-      alert('I\'m over here!'); // Alert the user
+    let alertTimeout = setTimeout(() => {
+      if (!foundImposter) {
+        imposter.style.backgroundColor = 'red'; // Change color to red
+        alert('I\'m over here!'); // Alert the user
+      }
     }, 15000); // 15000 milliseconds equals 15 seconds
     
     imposter.onclick = () => {
-      alert('You found the imposter!');
-      score++;
-      updateDifficulty();
-      document.body.removeChild(imposter);
-      createImposter(); // Create a new imposter
+      if (!foundImposter) {
+        alert('You found the imposter!');
+        score++;
+        foundImposter = true; // Set the flag to true as the imposter has been found
+        clearTimeout(alertTimeout); // Clear the timeout to prevent the alert
+        updateDifficulty();
+        document.body.removeChild(imposter);
+        createImposter(); // Create a new imposter
+      }
     };
     document.body.appendChild(imposter);
   };
