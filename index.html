@@ -10,25 +10,22 @@
     height: 100px;
     display: inline-block;
     margin: 10px;
-    background-color: blue;
-    cursor: pointer;
   }
-  .different {
-    background-color: green; /* Impostor will initially be green */
-  }
+  /* Colors will be set dynamically */
 </style>
 <script>
   let round = 1;
   let impostorRevealed = false;
   let totalShapes = 4;
+  let impostorIndex; // Declare impostorIndex globally
 
   function startRound() {
     impostorRevealed = false;
-    totalShapes = 4 * round; // Increase the number of shapes each round
+    totalShapes = 4 * round;
     const gameArea = document.getElementById('gameArea');
-    gameArea.innerHTML = ''; // Clear previous shapes
+    gameArea.innerHTML = '';
+    changeColors(); // Call changeColors to set new colors for the round
 
-    // Create shapes and append to game area
     for (let i = 0; i < totalShapes; i++) {
       const shape = document.createElement('div');
       shape.classList.add('shape');
@@ -36,22 +33,22 @@
       gameArea.appendChild(shape);
     }
 
-    // Randomly determine the impostor
-    const impostorIndex = Math.floor(Math.random() * totalShapes);
+    impostorIndex = Math.floor(Math.random() * totalShapes);
     gameArea.children[impostorIndex].classList.add('different');
-
-    // Set a timeout to reveal the impostor after 5 seconds
     setTimeout(revealImpostor, 5000);
   }
 
   function shapeClicked(isImpostor) {
-    if (isImpostor) {
-      alert("I'm over here!");
-      gameArea.children[impostorIndex].style.backgroundColor = 'red';
-    } else {
-      alert("That's not the impostor, you lose!");
-      round = 1;
-      startRound();
+    if (!impostorRevealed) {
+      if (isImpostor) {
+        impostorRevealed = true;
+        gameArea.children[impostorIndex].style.backgroundColor = 'red';
+        setTimeout(startRound, 2000); // Wait 2 seconds, then start new round
+      } else {
+        alert("That's not the impostor, you lose!");
+        round = 1;
+        startRound();
+      }
     }
   }
 
@@ -60,7 +57,23 @@
       impostorRevealed = true;
       const impostor = document.querySelector('.different');
       impostor.style.backgroundColor = 'red';
-      alert("You got the imposter!");
+      setTimeout(startRound, 2000); // Wait 2 seconds, then start new round
+    }
+  }
+
+  function changeColors() {
+    // Generate random colors for shapes and background
+    const newColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    const backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    document.body.style.backgroundColor = backgroundColor;
+    const shapes = document.getElementsByClassName('shape');
+    for (let shape of shapes) {
+      shape.style.backgroundColor = newColor;
+    }
+    // Set a different color for the impostor
+    const impostorColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    if (shapes[impostorIndex]) {
+      shapes[impostorIndex].style.backgroundColor = impostorColor;
     }
   }
 
