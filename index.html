@@ -42,17 +42,25 @@
         const ghosts = document.querySelectorAll(".ghost");
         const powerPellets = document.querySelectorAll(".power-pellet");
 
-        // Move Pacman
+        // Move Pacman using arrow keys
         document.addEventListener("keydown", (event) => {
+            const step = 10;
+            const currentPosition = pacman.getBoundingClientRect();
+            let newX = currentPosition.left;
+            let newY = currentPosition.top;
+
             if (event.key === "ArrowUp") {
-                pacman.style.transform = "rotate(-90deg)";
+                newY -= step;
             } else if (event.key === "ArrowDown") {
-                pacman.style.transform = "rotate(90deg)";
+                newY += step;
             } else if (event.key === "ArrowLeft") {
-                pacman.style.transform = "rotate(180deg)";
+                newX -= step;
             } else if (event.key === "ArrowRight") {
-                pacman.style.transform = "rotate(0deg)";
+                newX += step;
             }
+
+            pacman.style.left = `${newX}px`;
+            pacman.style.top = `${newY}px`;
         });
 
         // Handle collision with power pellets
