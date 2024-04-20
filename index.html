@@ -1,88 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Something Sus</title>
-<style>
-  .shape {
-    width: 100px;
-    height: 100px;
-    display: inline-block;
-    margin: 10px;
-  }
-  /* Colors will be set dynamically */
-</style>
-<script>
-  let round = 1;
-  let impostorRevealed = false;
-  let totalShapes = 4;
-  let impostorIndex; // Declare impostorIndex globally
-
-  function startRound() {
-    impostorRevealed = false;
-    totalShapes = 4 * round;
-    const gameArea = document.getElementById('gameArea');
-    gameArea.innerHTML = '';
-    changeColors(); // Call changeColors to set new colors for the round
-
-    for (let i = 0; i < totalShapes; i++) {
-      const shape = document.createElement('div');
-      shape.classList.add('shape');
-      shape.onclick = function() { shapeClicked(i === impostorIndex); };
-      gameArea.appendChild(shape);
-    }
-
-    impostorIndex = Math.floor(Math.random() * totalShapes);
-    gameArea.children[impostorIndex].classList.add('different');
-    setTimeout(revealImpostor, 5000);
-  }
-
-  function shapeClicked(isImpostor) {
-    if (!impostorRevealed) {
-      if (isImpostor) {
-        impostorRevealed = true;
-        gameArea.children[impostorIndex].style.backgroundColor = 'red';
-        setTimeout(startRound, 2000); // Wait 2 seconds, then start new round
-      } else {
-        alert("That's not the impostor, you lose!");
-        round = 1;
-        startRound();
-      }
-    }
-  }
-
-  function revealImpostor() {
-    if (!impostorRevealed) {
-      impostorRevealed = true;
-      const impostor = document.querySelector('.different');
-      impostor.style.backgroundColor = 'red';
-      setTimeout(startRound, 2000); // Wait 2 seconds, then start new round
-    }
-  }
-
-  function changeColors() {
-    // Generate random colors for shapes and background
-    const newColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-    const backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-    document.body.style.backgroundColor = backgroundColor;
-    const shapes = document.getElementsByClassName('shape');
-    for (let shape of shapes) {
-      shape.style.backgroundColor = newColor;
-    }
-    // Set a different color for the impostor
-    const impostorColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-    if (shapes[impostorIndex]) {
-      shapes[impostorIndex].style.backgroundColor = impostorColor;
-    }
-  }
-
-  window.onload = startRound;
-</script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #pacman {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: yellow;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+        .ghost {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .power-pellet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: blue;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
-  <div id="gameArea">
-    <!-- Shapes will be generated here -->
-  </div>
+    <div id="pacman"></div>
+    <div class="ghost" style="top: 100px; left: 100px;"></div>
+    <div class="ghost" style="top: 200px; left: 200px;"></div>
+    <div class="power-pellet" style="top: 150px; left: 250px;"></div>
+    <div class="power-pellet" style="top: 300px; left: 350px;"></div>
+    <script>
+        let score = 0;
+        const pacman = document.getElementById("pacman");
+        const ghosts = document.querySelectorAll(".ghost");
+        const powerPellets = document.querySelectorAll(".power-pellet");
+
+        // Move Pacman
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") {
+                pacman.style.transform = "rotate(-90deg)";
+            } else if (event.key === "ArrowDown") {
+                pacman.style.transform = "rotate(90deg)";
+            } else if (event.key === "ArrowLeft") {
+                pacman.style.transform = "rotate(180deg)";
+            } else if (event.key === "ArrowRight") {
+                pacman.style.transform = "rotate(0deg)";
+            }
+        });
+
+        // Handle collision with power pellets
+        powerPellets.forEach((pellet) => {
+            pellet.addEventListener("click", () => {
+                pellet.style.display = "none";
+                score += 10;
+                console.log("Score:", score);
+            });
+        });
+
+        // Handle collision with ghosts
+        ghosts.forEach((ghost) => {
+            ghost.addEventListener("click", () => {
+                score -= 20;
+                console.log("Score:", score);
+            });
+        });
+    </script>
 </body>
 </html>
