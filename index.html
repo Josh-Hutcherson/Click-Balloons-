@@ -1,84 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #pacman {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: yellow;
-            border-radius: 50%;
-            transition: all 0.2s;
-        }
-        .ghost {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-            border-radius: 50%;
-        }
-        .power-pellet {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: blue;
-            border-radius: 50%;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Somethings-sus</title>
 </head>
 <body>
-    <div id="pacman"></div>
-    <div class="ghost" style="top: 100px; left: 100px;"></div>
-    <div class="ghost" style="top: 200px; left: 200px;"></div>
-    <div class="power-pellet" style="top: 150px; left: 250px;"></div>
-    <div class="power-pellet" style="top: 300px; left: 350px;"></div>
-    <script>
-        let score = 0;
-        const pacman = document.getElementById("pacman");
-        const ghosts = document.querySelectorAll(".ghost");
-        const powerPellets = document.querySelectorAll(".power-pellet");
-
-        // Move Pacman using arrow keys
-        document.addEventListener("keydown", (event) => {
-            const step = 10;
-            const currentPosition = pacman.getBoundingClientRect();
-            let newX = currentPosition.left;
-            let newY = currentPosition.top;
-
-            if (event.key === "ArrowUp") {
-                newY -= step;
-            } else if (event.key === "ArrowDown") {
-                newY += step;
-            } else if (event.key === "ArrowLeft") {
-                newX -= step;
-            } else if (event.key === "ArrowRight") {
-                newX += step;
-            }
-
-            pacman.style.left = `${newX}px`;
-            pacman.style.top = `${newY}px`;
-        });
-
-        // Handle collision with power pellets
-        powerPellets.forEach((pellet) => {
-            pellet.addEventListener("click", () => {
-                pellet.style.display = "none";
-                score += 10;
-                console.log("Score:", score);
-            });
-        });
-
-        // Handle collision with ghosts
-        ghosts.forEach((ghost) => {
-            ghost.addEventListener("click", () => {
-                score -= 20;
-                console.log("Score:", score);
-            });
-        });
-    </script>
+    <canvas id="gameCanvas"></canvas>
+    <script src="game.js"></script>
 </body>
 </html>
