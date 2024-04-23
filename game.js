@@ -21,8 +21,27 @@ function drawPacMan() {
 
 // Update game state
 function update() {
-    // Handle Pac-Man movement (e.g., arrow keys)
-    // ...
+  // Add event listeners for arrow keys
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            // Move Pac-Man up
+            pacManY -= 10;
+            break;
+        case 'ArrowDown':
+            // Move Pac-Man down
+            pacManY += 10;
+            break;
+        case 'ArrowLeft':
+            // Move Pac-Man left
+            pacManX -= 10;
+            break;
+        case 'ArrowRight':
+            // Move Pac-Man right
+            pacManX += 10;
+            break;
+    }
+});
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
