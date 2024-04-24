@@ -10,11 +10,15 @@ let pacManX = canvas.width / 2;
 let pacManY = canvas.height / 2;
 const pacManSpeed = 3;
 
+// Ghosts
+const ghosts = [
+    { x: 100, y: 100, speed: 2 },
+    { x: 300, y: 100, speed: 2 },
+    // Add more ghosts as needed
+];
+
 // Pellets
 const pellets = []; // Array to store pellet positions
-
-// Ghosts
-const ghosts = []; // Array to store ghost objects
 
 // Score
 let score = 0;
@@ -35,6 +39,17 @@ function drawPellets() {
         ctx.beginPath();
         ctx.arc(pellet.x, pellet.y, 5, 0, 2 * Math.PI);
         ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
+    });
+}
+
+// Draw ghosts
+function drawGhosts() {
+    ghosts.forEach((ghost) => {
+        ctx.beginPath();
+        ctx.arc(ghost.x, ghost.y, 15, 0, 2 * Math.PI);
+        ctx.fillStyle = 'red';
         ctx.fill();
         ctx.closePath();
     });
@@ -74,6 +89,17 @@ function update() {
         }
     });
 
+    // Check collision with ghosts
+    ghosts.forEach((ghost) => {
+        const dx = pacManX - ghost.x;
+        const dy = pacManY - ghost.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 20) {
+            // Handle collision with ghost (e.g., decrease lives)
+            // ...
+        }
+    });
+
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -81,7 +107,7 @@ function update() {
     drawPellets();
 
     // Draw ghosts
-    // ...
+    drawGhosts();
 
     // Draw Pac-Man
     drawPacMan();
@@ -91,7 +117,7 @@ function update() {
     ctx.font = '16px Arial';
     ctx.fillText(`Score: ${score}`, 10, 20);
 
-    // Other game logic (ghost behavior, win/lose conditions, etc.)
+    // Other game logic (win/lose conditions, ghost behavior, etc.)
     // ...
 }
 
