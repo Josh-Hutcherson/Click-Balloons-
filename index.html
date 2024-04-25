@@ -3,81 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somethings-Sus</title>
-  
-    
-<style>
+    <title>Somethings Sus</title>
+    <style>
         body {
-             /* Other styles... */
-            background-image: url("R.jpg");
-            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             background-color: #f0f0f0;
-            background-image: url("https://www.bing.com/images/search?q=pictures%20of%20josh%20hutcherson&FORM=IQFRBA&id=40C02D0872FD7D509D811F29FE3D9214A72C921B");
-            background-size: cover;
         }
-        .circle {
+        #circle {
             width: 100px;
             height: 100px;
             background-color: #3498db;
             border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #score {
-            font-size: 24px;
-            color: #fff;
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="circle" id="circle"></div>
-    <div id="score">Score: 0</div>
-
+    <div id="circle"></div>
+    <p>Score: <span id="score">0</span></p>
+    <audio id="special-song" src="whistle.mp3"></audio>
     <script>
-        const backgroundAudio = document.getElementById("backgroundAudio");
-const specialBackgroundChance = 0.7; // 70% chance
-
-// Check if the special background appears (based on your game logic)
-if (Math.random() < specialBackgroundChance) {
-    // Show the special background
-    document.body.style.backgroundImage = `url("path/to/your-image.jpg")`;
-    // Play the audio
-    backgroundAudio.play();
-} else {
-    // Show the default background
-    document.body.style.backgroundImage = "none";
-    // Pause the audio
-    backgroundAudio.pause();
-}
         const circle = document.getElementById("circle");
-        const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12"];
-        let currentColorIndex = 0;
+        const scoreElement = document.getElementById("score");
+        const specialSong = document.getElementById("special-song");
+
         let score = 0;
+        let specialBackgroundChance = 0.9;
 
         circle.addEventListener("click", () => {
-            // Change the circle color
-            currentColorIndex = (currentColorIndex + 1) % colors.length;
-            circle.style.backgroundColor = colors[currentColorIndex];
+            // Change circle color
+            const randomColor = getRandomColor();
+            circle.style.backgroundColor = randomColor;
 
-            // Change the background color
-            document.body.style.backgroundColor = colors[(currentColorIndex + 2) % colors.length];
+            // Change background color
+            document.body.style.backgroundColor = randomColor;
 
-            // Increment the score
+            // Update score
             score++;
-            document.getElementById("score").textContent = `Score: ${score}`;
+            scoreElement.textContent = score;
+
+            // Check for special background
+            if (Math.random() < specialBackgroundChance) {
+                document.body.style.backgroundImage = "url('R.jpg')";
+                specialSong.play();
+            }
         });
+
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
     </script>
-      <audio id="backgroundAudio" autoplay loop>
-    <source src="whistle.mp3" type="audio/mpeg">
-    <!-- Add additional source elements for other formats (e.g., WAV) -->
-</audio>
 </body>
 </html>
