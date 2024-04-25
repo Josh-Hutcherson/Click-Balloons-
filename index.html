@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Changing Game</title>
+    <title>Somethings-Sus</title>
     <style>
         body {
             display: flex;
@@ -23,15 +23,24 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+        #score {
+            font-size: 24px;
+            color: #fff;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="circle" id="circle"></div>
+    <div id="score">Score: 0</div>
 
     <script>
         const circle = document.getElementById("circle");
         const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12"];
         let currentColorIndex = 0;
+        let score = 0;
 
         circle.addEventListener("click", () => {
             // Change the circle color
@@ -40,6 +49,10 @@
 
             // Change the background color
             document.body.style.backgroundColor = colors[(currentColorIndex + 2) % colors.length];
+
+            // Increment the score
+            score++;
+            document.getElementById("score").textContent = `Score: ${score}`;
         });
     </script>
 </body>
