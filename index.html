@@ -3,67 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somethings Sus</title>
-   
-
+    <title>Circle Clicker Game</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
+        }
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 50%;
         }
         #circle {
-            width: 100px;
-            height: 100px;
-            background-color: #3498db;
-            border-radius: 50%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: #00ff00;
+            border-radius: 50%;
             cursor: pointer;
+        }
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div id="circle"></div>
-    <p>Score: <span id="score">0</span></p>
-    <audio id="special-song" src="whistle.mp3"></audio>
+    <div id="game-container">
+        <div id="circle"></div>
+        <div id="score">Score: 0</div>
+    </div>
+
     <script>
         const circle = document.getElementById("circle");
-        const scoreElement = document.getElementById("score");
-        const specialSong = document.getElementById("special-song");
-
+        const scoreDisplay = document.getElementById("score");
         let score = 0;
-        let specialBackgroundChance = 0.9;
-    
-        // After defining the specialSong element
-specialSong.addEventListener("ended", () => {
-    // Reset the background to the default color/image
-    document.body.style.backgroundImage = "none"; // Remove special background
-    document.body.style.backgroundColor = "#f0f0f0"; // Set default background color
-});
+        let specialBackground = false;
 
-   circle.addEventListener("click", () => {
-    // Change circle color
-    const randomColor = getRandomColor();
-    circle.style.backgroundColor = randomColor;
-       
-document.body.style.backgroundColor = randomColor;
-    
-       // Update score
-    score++;
-    scoreElement.textContent = score; // Update the displayed score
+        // Load special song (replace with your own song file)
+        const specialSong = new Audio("whistle.mp3");
 
-    // Check for special background
-    if (Math.random() < specialBackgroundChance) {
-        document.body.style.backgroundImage = "url('R.png')";
-        specialSong.play();
-    }
-});
- <p>Score: <span id="score">0</span></p>
         function getRandomColor() {
             const letters = "0123456789ABCDEF";
             let color = "#";
@@ -72,6 +65,43 @@ document.body.style.backgroundColor = randomColor;
             }
             return color;
         }
+
+        function playSpecialSong() {
+            specialSong.play();
+        }
+
+        function stopSpecialSong() {
+            specialSong.pause();
+            specialSong.currentTime = 0;
+        }
+
+        function updateScore() {
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        circle.addEventListener("click", () => {
+            score++;
+            circle.style.backgroundColor = getRandomColor();
+            document.body.style.backgroundColor = getRandomColor();
+
+            if (Math.random() < 0.9) {
+                specialBackground = true;
+                playSpecialSong();
+            }
+        });
+
+        specialSong.addEventListener("ended", () => {
+            specialBackground = false;
+            document.body.style.backgroundColor = getRandomColor();
+            stopSpecialSong();
+        });
+
+        function gameLoop() {
+            updateScore();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
     </script>
 </body>
 </html>
