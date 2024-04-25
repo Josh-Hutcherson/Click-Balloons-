@@ -12,11 +12,6 @@
         background-size: cover;
     }
 </style>
-    <audio id="backgroundAudio" autoplay loop>
-    <source src="whistle.mp3" type="audio/mpeg">
-    <!-- Add additional source elements for other formats (e.g., WAV) -->
-</audio>
-
 
         body {
             display: flex;
@@ -50,6 +45,21 @@
     <div id="score">Score: 0</div>
 
     <script>
+        const backgroundAudio = document.getElementById("backgroundAudio");
+const specialBackgroundChance = 0.7; // 70% chance
+
+// Check if the special background appears (based on your game logic)
+if (Math.random() < specialBackgroundChance) {
+    // Show the special background
+    document.body.style.backgroundImage = `url("path/to/your-image.jpg")`;
+    // Play the audio
+    backgroundAudio.play();
+} else {
+    // Show the default background
+    document.body.style.backgroundImage = "none";
+    // Pause the audio
+    backgroundAudio.pause();
+}
         const circle = document.getElementById("circle");
         const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12"];
         let currentColorIndex = 0;
@@ -68,5 +78,9 @@
             document.getElementById("score").textContent = `Score: ${score}`;
         });
     </script>
+      <audio id="backgroundAudio" autoplay loop>
+    <source src="whistle.mp3" type="audio/mpeg">
+    <!-- Add additional source elements for other formats (e.g., WAV) -->
+</audio>
 </body>
 </html>
