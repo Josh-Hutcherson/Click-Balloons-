@@ -3,11 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Pac-Man Game</title>
+    <title>Something Sus</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="gameCanvas"></canvas>
-    <script src="game.js"></script>
+    <div class="circle" id="circle"></div>
+
+    <script>
+        const circle = document.getElementById("circle");
+        const colors = ["#3498db", "#e74c3c", "#27ae60", "#f39c12"];
+        let currentColorIndex = 0;
+
+        circle.addEventListener("click", () => {
+            // Change the circle color
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            circle.style.backgroundColor = colors[currentColorIndex];
+
+            // Change the background color
+            document.body.style.backgroundColor = colors[(currentColorIndex + 2) % colors.length];
+        });
+    </script>
 </body>
 </html>
