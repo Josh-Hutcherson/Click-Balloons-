@@ -20,8 +20,8 @@
         let score = 0;
         let houses = 0;
         let jobs = 0;
-        const houseCost = 100;
-        const jobCost = 100;
+        let houseCost = 100;
+        let jobCost = 100;
 
         function earnScore() {
             score += 5;
@@ -32,11 +32,12 @@
             if (score >= houseCost) {
                 score -= houseCost;
                 houses++;
+                houseCost += 100; // Increase house cost
                 updateDisplay();
                 showHouseImage();
                 playSpecialSong();
             } else {
-                alert("Can buy a house! Not enough! Keep clicking!");
+                alert("You cant buy a house! Keep clicking!");
             }
         }
 
@@ -44,9 +45,10 @@
             if (score >= jobCost) {
                 score -= jobCost;
                 jobs++;
+                jobCost += 100; // Increase job cost
                 updateDisplay();
             } else {
-                alert("Your wage aint enough! Keep clicking!");
+                alert("Your wage ain't enough! Keep clicking!");
             }
         }
 
