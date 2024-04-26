@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somethings Sus</title>
+    <title>Score Tycoon Game</title>
 </head>
 <body>
-    <h1>Somethings Sus</h1>
+    <h1>Score Tycoon Game</h1>
     <p>Score: <span id="score">0</span></p>
     <p>Houses: <span id="houses">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <button onclick="earnScore()">Click to Earn Score</button>
     <button onclick="buyHouse()">Buy House</button>
     <button onclick="buyJob()">Buy Job</button>
-    <img id="houseImage" src="R.png" alt="House" style="display: none;">
+    <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
 
     <script>
@@ -36,8 +36,9 @@
                 updateDisplay();
                 showHouseImage();
                 playSpecialSong();
+                changeHouseImage(); // Call the function to change house image
             } else {
-                alert("You cant buy a house! You dont have enough!");
+                alert("Not enough score to buy a house!");
             }
         }
 
@@ -49,7 +50,7 @@
                 score += 10; // Increase score by 5
                 updateDisplay();
             } else {
-                alert("Your wage aint enough! Keep clicking!");
+                alert("Not enough score to buy a job!");
             }
         }
 
@@ -65,6 +66,11 @@
 
         function playSpecialSong() {
             document.getElementById("specialSong").play();
+        }
+
+        function changeHouseImage() {
+            // Replace the image source with the new house image
+            document.getElementById("houseImage").src = "R.png";
         }
     </script>
 </body>
