@@ -37,7 +37,7 @@
                 showHouseImage();
                 playSpecialSong();
             } else {
-                alert("You cant buy a house! Keep clicking!");
+                alert("You cant buy a house! You dont have enough!");
             }
         }
 
@@ -46,9 +46,10 @@
                 score -= jobCost;
                 jobs++;
                 jobCost += 100; // Increase job cost
+                score += 5; // Increase score by 5
                 updateDisplay();
             } else {
-                alert("Your wage ain't enough! Keep clicking!");
+                alert("Your wage aint enough! Keep clicking!");
             }
         }
 
