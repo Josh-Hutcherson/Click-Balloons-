@@ -103,8 +103,21 @@
             updateScore();
             requestAnimationFrame(gameLoop);
         }
+ gameLoop();
+specialSong.addEventListener("ended", () => {
+    specialBackground = false;
+    document.body.style.backgroundColor = getRandomColor();
+    stopSpecialSong();
+});
 
-        gameLoop();
+function gameLoop() {
+    updateScore();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
+       
     </script>
 </body>
 </html>
