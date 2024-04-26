@@ -4,107 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somethings Sus</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            /* Set default background color */
-            background-color: #ffffff;
-        
-        }
-        #game-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            background-color: #ffffff;
-            border: 2px solid #000000;
-            border-radius: 50%;
-        }
-        #circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            background-color: #00ff00;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        #score {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
-    <div id="game-container">
-        <div id="circle"></div>
-        <div id="score">Score: 0</div>
-    </div>
+    <h1>Score Tycoon Game</h1>
+    <p>Score: <span id="score">0</span></p>
+    <p>Houses: <span id="houses">0</span></p>
+    <p>Jobs: <span id="jobs">0</span></p>
+    <button onclick="earnScore()">Click to Earn Score</button>
+    <button onclick="buyHouse()">Buy House</button>
+    <img id="houseImage" src="R.png" alt="House" style="display: none;">
+    <audio id="specialSong" src="whistle.mp3"></audio>
 
     <script>
-        const circle = document.getElementById("circle");
-        const scoreDisplay = document.getElementById("score");
         let score = 0;
-          specialBackground = url ("R.png")
-        let specialBackground = false;
+        let houses = 0;
+        const houseCost = 100;
+        const jobCost = 100;
 
-        // Load special song (replace with your own song file)
-        const specialSong = new Audio("whistle.mp3");
+        function earnScore() {
+            score += 5;
+            updateDisplay();
+        }
 
-        function getRandomColor() {
-            const letters = "0123456789ABCDEF";
-            let color = "#";
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+        function buyHouse() {
+            if (score >= houseCost) {
+                score -= houseCost;
+                houses++;
+                updateDisplay();
+                showHouseImage();
+                playSpecialSong();
+            } else {
+                alert("You dont have enough score to buy a house! Keep clicking!");
             }
-            return color;
+        }
+
+        function updateDisplay() {
+            document.getElementById("score").textContent = score;
+            document.getElementById("houses").textContent = houses;
+        }
+
+        function showHouseImage() {
+            document.getElementById("houseImage").style.display = "block";
         }
 
         function playSpecialSong() {
-            specialSong.play();
+            document.getElementById("specialSong").play();
         }
-
-        function stopSpecialSong() {
-            specialSong.pause();
-            specialSong.currentTime = 0;
-        }
-
-        function updateScore() {
-            scoreDisplay.textContent = `Score: ${score}`;
-        }
-
-        circle.addEventListener("click", () => {
-            score++;
-            circle.style.backgroundColor = getRandomColor();
-            document.body.style.backgroundColor = getRandomColor();
-
-            if (Math.random() < 0.3) {
-                specialBackground = true;
-                playSpecialSong();
-            }
-        });
-
-        specialSong.addEventListener("ended", () => {
-            specialBackground = false;
-            document.body.style.backgroundColor = getRandomColor();
-            stopSpecialSong();
-        });
-
-        function gameLoop() {
-            updateScore();
-            requestAnimationFrame(gameLoop);
-        }
-
-        gameLoop();
     </script>
 </body>
 </html>
