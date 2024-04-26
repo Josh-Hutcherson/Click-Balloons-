@@ -12,6 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            /* Set default background color */
             background-color: #ffffff;
             /* Set background image */
             background-image: url("R.png");
@@ -103,21 +104,8 @@
             updateScore();
             requestAnimationFrame(gameLoop);
         }
- gameLoop();
-specialSong.addEventListener("ended", () => {
-    specialBackground = false;
-    document.body.style.backgroundColor = getRandomColor();
-    stopSpecialSong();
-});
 
-function gameLoop() {
-    updateScore();
-    requestAnimationFrame(gameLoop);
-}
-
-gameLoop();
-
-       
+        gameLoop();
     </script>
 </body>
 </html>
