@@ -24,7 +24,8 @@
         let jobCost = 50;
 
         function earnScore() {
-            score += 1;
+            if (jobs > 0 ) {
+                score++;
             updateDisplay();
         }
 
