@@ -24,8 +24,12 @@
         let jobCost = 50;
 
         function earnScore() {
-            if (jobs > 0 ) {
+            if (jobs > 0) {
                 score+=10;}
+                if (jobs > 5) {
+                    score+=50;}
+                     if (jobs > 10) {
+                         score+=100;}
         else {
                 score++;}
             updateDisplay();
