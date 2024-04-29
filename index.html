@@ -24,7 +24,7 @@
         let jobCost = 100;
 
         function earnScore() {
-            score += 5;
+            score += 1;
             updateDisplay();
         }
 
@@ -46,8 +46,8 @@
             if (score >= jobCost) {
                 score -= jobCost;
                 jobs++;
-                jobCost += 100; // Increase job cost
-                score += 10; // Increase score by 5
+                jobCost += 50; // Increase job cost
+                score += 5; // Increase score by 5
                 updateDisplay();
             } else {
                 alert("Not enough score to buy a job!");
