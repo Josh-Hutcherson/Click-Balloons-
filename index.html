@@ -42,17 +42,18 @@
             }
         }
 
-        function buyJob() {
-            if (score >= jobCost) {
-                score -= jobCost;
-                jobs++;
-                jobCost += 50; // Increase job cost
-                score += 10; // Increase score by 5
-                updateDisplay();
-            } else {
-                alert("Not enough score to buy a job!");
-            }
-        }
+    function buyJob() {
+    if (score >= jobCost) {
+        score -= jobCost;
+        jobs++;
+        jobCost += 50; // Increase job cost
+        score += 10; // Increase score by 10 (adjust this value as needed)
+        updateDisplay();
+    } else {
+        alert("Not enough score to buy a job!");
+    }
+}
+
 
         function updateDisplay() {
             document.getElementById("score").textContent = score;
