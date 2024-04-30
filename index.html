@@ -24,7 +24,7 @@
         let graves = 0;
         let jobs = 0;
         let houseCost = 100;
-        let graveCost = 50000000
+        let graveCost = 50000000000
         let jobCost = 50;
 
         function earnScore() {
@@ -42,6 +42,8 @@
                          score+=100000;}
                                          if (jobs > 100) {
                          score+=1000000;}
+                                              if (jobs > 200) {
+                         houses+=200;}
         else {
                 score++;}
             updateDisplay();
