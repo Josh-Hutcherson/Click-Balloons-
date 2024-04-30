@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score Tycoon Game</title>
+    <title>Somethings-Sus</title>
 </head>
 <body>
     <h1>Score Tycoon Game</h1>
     <p>Score: <span id="score">0</span></p>
     <p>Houses: <span id="houses">0</span></p>
+    <p>Houses: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <button onclick="earnScore()">Click to Earn Score</button>
     <button onclick="buyHouse()">Buy House</button>
+     <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
@@ -19,8 +21,10 @@
     <script>
         let score = 0;
         let houses = 0;
+        let grave = 0;
         let jobs = 0;
         let houseCost = 100;
+        let graveCost = 50000000
         let jobCost = 50;
 
         function earnScore() {
@@ -34,6 +38,10 @@
                          score+=1000;}
                                if (houses > 15) {
                          score+=10000;}
+                                    if (houses > 30) {
+                         score+=100000;}
+                                         if (jobs > 100) {
+                         score+=1000000;}
         else {
                 score++;}
             updateDisplay();
@@ -50,6 +58,19 @@
                 changeHouseImage(); // Call the function to change house image
             } else {
                 alert("Not enough score to buy a house!");
+            }
+        }
+         function buyGrave() {
+            if (score >= graveCost) {
+                score -= graveCost;
+                gravestone++;
+                graveCost += 50000000; // Increase house cost
+                updateDisplay();
+                alert("You've won! Your now ready to die!");
+                setTimeout(function() {
+                    
+            } else {
+                alert("Your not ready to die.");
             }
         }
 
