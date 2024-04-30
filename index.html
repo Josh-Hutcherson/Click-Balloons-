@@ -6,7 +6,7 @@
     <title>Somethings-Sus</title>
 </head>
 <body>
-    <h1>Score Tycoon Game</h1>
+    <h1>Somethings-Sus</h1>
     <p>Score: <span id="score">0</span></p>
     <p>Houses: <span id="houses">0</span></p>
     <p>Gravestone: <span id="gravestone">0</span></p>
@@ -67,8 +67,6 @@
                 graveCost += 50000000; // Increase grave cost
                 updateDisplay();
                 alert("You've won! Your now ready to die!");
-                setTimeout(function() {
-                    
             } else {
                 alert("Your not ready to die.");
             }
@@ -90,6 +88,7 @@
         function updateDisplay() {
             document.getElementById("score").textContent = score;
             document.getElementById("houses").textContent = houses;
+              document.getElementById("gravestone").textContent = graves;
             document.getElementById("jobs").textContent = jobs;
         }
 
