@@ -9,7 +9,7 @@
     <h1>Score Tycoon Game</h1>
     <p>Score: <span id="score">0</span></p>
     <p>Houses: <span id="houses">0</span></p>
-    <p>Houses: <span id="gravestone">0</span></p>
+    <p>Gravestone: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <button onclick="earnScore()">Click to Earn Score</button>
     <button onclick="buyHouse()">Buy House</button>
@@ -64,7 +64,7 @@
             if (score >= graveCost) {
                 score -= graveCost;
                 gravestone++;
-                graveCost += 50000000; // Increase house cost
+                graveCost += 50000000; // Increase grave cost
                 updateDisplay();
                 alert("You've won! Your now ready to die!");
                 setTimeout(function() {
