@@ -12,14 +12,16 @@
     <p>Gravestone: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <p>Blocks: <span id="blocks">0</span></p>
-     <p>Factories: <span id="factories">0</span></p>
+    <p>Factories: <span id="factories">0</span></p>
+    
     <button onclick="earnScore()">Click to Earn Score</button>
-     <button onclick="buyBlock()">Click to Buy Blocks</button>
+    <button onclick="buyBlock()">Click to Buy Blocks</button>
     <button onclick="buyHouse()">Buy House</button>
-     <button onclick="buyGrave()">Buy a Gravestone</button>
+    <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
-     <button onclick="showPresent()">Click for Present</button>
+    <button onclick="showPresent()">Click for Present</button>
+    
     <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
@@ -39,7 +41,7 @@
         let houseCost = 100;
         let graveCost = 50000000000000
         let jobCost = 50;
-         let factoriesCost = 10;
+        let factoriesCost = 10;
         let blocksCost= 10;
 
         function earnScore() {
@@ -77,8 +79,6 @@ function showPresent() {
                  "gift1.jpg",
                  "gift2.jpg",
                  "gift3.jpg"
-                 "gift4.jpg"
-                 "gift5.jpg"
                     // Add more image filenames here
                 ];
                 const randomIndex = Math.floor(Math.random() * presents.length);
