@@ -25,6 +25,7 @@
         let graves = 0;
         let jobs = 0;
         let blocks = 0;
+        let blocksCost;10000
         let houseCost = 100;
         let graveCost = 50000000000
         let jobCost = 50;
@@ -50,6 +51,8 @@
                          blocks++;}
                                                         if (jobs > 500) {
                          score+=10000000;}
+                                                             if (blocks > 5000) {
+                         score+=1000000000;}
         else {
                 score++;}
             updateDisplay();
