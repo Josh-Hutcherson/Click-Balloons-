@@ -19,7 +19,6 @@
      <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
-      <button onclick="showPresent()">Click for Present</button>
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
 
@@ -63,15 +62,6 @@
         else {
                 score++;}
             updateDisplay();
-        }
-            function showPresent() {
-            // Simulate waiting for 5 minutes (300,000 milliseconds)
-            setTimeout(function() {
-                const presents = ["score", "blocks", "jobs", "houses"];
-                const randomIndex = Math.floor(Math.random() * presents.length);
-                const randomPresent = presents[randomIndex];
-                alert(`You received a ${randomPresent}!`);
-            }, 5000); // 5 minutes in milliseconds
         }
 
         function buyHouse() {
@@ -158,8 +148,6 @@
             // Replace the image source with the new house image
             document.getElementById("houseImage").src = "R.png";
         }
-     
-
     </script>
 </body>
 </html>
