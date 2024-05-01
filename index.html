@@ -19,9 +19,16 @@
      <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
+     <button onclick="showPresent()">Click for Present</button>
+    <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
-
+<style>
+        /* Style for the present image */
+        #presentImage {
+            display: none; /* Initially hidden */
+        }
+</style>
     <script>
         let score = 0;
         let houses = 0;
@@ -63,7 +70,27 @@
                 score++;}
             updateDisplay();
         }
+function showPresent() {
+            // Simulate waiting for 5 seconds (5000 milliseconds)
+            setTimeout(function() {
+                const presents = [
+                    "gift1.jpg",
+                    "gift2.jpg",
+                    "gift3.jpg"
+                    // Add more image filenames here
+                ];
+                const randomIndex = Math.floor(Math.random() * presents.length);
+                const randomPresent = presents[randomIndex];
 
+                // Display the present image
+                const presentImage = document.getElementById("presentImage");
+                presentImage.src = randomPresent;
+                presentImage.style.display = "block";
+
+                // Show an alert
+                alert("Here's a present!");
+            }, 5000); // 5 seconds in milliseconds
+        }
         function buyHouse() {
             if (score >= houseCost) {
                 score -= houseCost;
