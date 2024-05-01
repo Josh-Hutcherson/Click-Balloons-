@@ -13,6 +13,7 @@
     <p>Jobs: <span id="jobs">0</span></p>
     <p>Blocks: <span id="blocks">0</span></p>
     <button onclick="earnScore()">Click to Earn Score</button>
+     <button onclick="buyBlock()">Click to Buy Blocks</button>
     <button onclick="buyHouse()">Buy House</button>
      <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
@@ -70,7 +71,7 @@
             }
         }
         
-        function buyHouse() {
+        function buyBlock() {
             if (houses >= blocksCost) {
                 houses -= blocksCost;
                 blocks++;
@@ -113,6 +114,7 @@
             document.getElementById("score").textContent = score;
             document.getElementById("houses").textContent = houses;
               document.getElementById("gravestone").textContent = graves;
+             document.getElementById("gravestone").textContent = blocks;
             document.getElementById("jobs").textContent = jobs;
         }
 
