@@ -12,11 +12,13 @@
     <p>Gravestone: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <p>Blocks: <span id="blocks">0</span></p>
+     <p>Factories: <span id="factories">0</span></p>
     <button onclick="earnScore()">Click to Earn Score</button>
      <button onclick="buyBlock()">Click to Buy Blocks</button>
     <button onclick="buyHouse()">Buy House</button>
      <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
+    <button onclick="buyFactories()">Buy Factory</button>
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
 
@@ -26,9 +28,11 @@
         let graves = 0;
         let jobs = 0;
         let blocks = 0;
+        let factories = 0;
         let houseCost = 100;
-        let graveCost = 50000000000
+        let graveCost = 50000000000000
         let jobCost = 50;
+         let factoriesCost = 100;
         let blocksCost= 1000;
 
         function earnScore() {
@@ -54,6 +58,8 @@
                          score+=100000000000;}
                                                                    if (jobs > 1000) {
                          score+=1000000000;}
+                                                                        if (factories > 100) {
+                         blocks++;}
         else {
                 score++;}
             updateDisplay();
@@ -81,6 +87,16 @@
                 updateDisplay();
             } else {
                 alert("Not enough Houses to buy a block!");
+            }
+        }
+        function buyFactories() {
+            if (jobs >= factoriesCost) {
+                jobs -= factoriesCost;
+                factories++;
+                factoriesCost += 100; // Increase blocks cost
+                updateDisplay();
+            } else {
+                alert("Not enough Jobs to build a factory!");
             }
         }
          function buyGrave() {
@@ -118,6 +134,7 @@
               document.getElementById("gravestone").textContent = graves;
              document.getElementById("blocks").textContent = blocks;
             document.getElementById("jobs").textContent = jobs;
+             document.getElementById("factories").textContent = factories;
         }
 
         function showHouseImage() {
