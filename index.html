@@ -33,7 +33,7 @@
         let graveCost = 50000000000000
         let jobCost = 50;
          let factoriesCost = 10;
-        let blocksCost= 100;
+        let blocksCost= 10;
 
         function earnScore() {
             if (jobs > 0) {
@@ -82,7 +82,7 @@
             if (houses >= blocksCost) {
                 houses -= blocksCost;
                 blocks++;
-                blocksCost += 1000; // Increase blocks cost
+                blocksCost += 10; // Increase blocks cost
                 updateDisplay();
             } else {
                 alert("Not enough Houses to buy a block!");
