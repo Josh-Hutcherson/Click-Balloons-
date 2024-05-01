@@ -25,7 +25,7 @@
         let graves = 0;
         let jobs = 0;
         let blocks = 0;
-        let blocksCost;10000
+        let blocksCost= 2000;
         let houseCost = 100;
         let graveCost = 50000000000
         let jobCost = 50;
@@ -47,8 +47,6 @@
                          score+=1000000;}
                                               if (jobs > 200) {
                          houses+=200;}
-                                                    if (houses > 2000) {
-                         blocks++;}
                                                         if (jobs > 500) {
                          score+=10000000;}
                                                              if (blocks > 5000) {
@@ -69,6 +67,17 @@
                 changeHouseImage(); // Call the function to change house image
             } else {
                 alert("Not enough score to buy a house!");
+            }
+        }
+        
+        function buyHouse() {
+            if (houses >= blocksCost) {
+                houses -= blocksCost;
+                blocks++;
+                blocksCost += 2000; // Increase house cost
+                updateDisplay();
+            } else {
+                alert("Not enough Houses to buy a block!");
             }
         }
          function buyGrave() {
