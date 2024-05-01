@@ -64,6 +64,15 @@
                 score++;}
             updateDisplay();
         }
+            function showPresent() {
+            // Simulate waiting for 5 minutes (300,000 milliseconds)
+            setTimeout(function() {
+                const presents = ["score", "blocks", "jobs", "houses"];
+                const randomIndex = Math.floor(Math.random() * presents.length);
+                const randomPresent = presents[randomIndex];
+                alert(`You received a ${randomPresent}!`);
+            }, 5000); // 5 minutes in milliseconds
+        }
 
         function buyHouse() {
             if (score >= houseCost) {
@@ -149,15 +158,7 @@
             // Replace the image source with the new house image
             document.getElementById("houseImage").src = "R.png";
         }
-         function showPresent() {
-            // Simulate waiting for 5 minutes (300,000 milliseconds)
-            setTimeout(function() {
-                const presents = ["score", "blocks", "jobs", "houses"];
-                const randomIndex = Math.floor(Math.random() * presents.length);
-                const randomPresent = presents[randomIndex];
-                alert(`You received a ${randomPresent}!`);
-            }, 300000); // 5 minutes in milliseconds
-        }
+     
 
     </script>
 </body>
