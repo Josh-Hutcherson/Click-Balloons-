@@ -13,7 +13,6 @@
     <p>Jobs: <span id="jobs">0</span></p>
     <p>Blocks: <span id="blocks">0</span></p>
     <p>Factories: <span id="factories">0</span></p>
-    <p>Arcades: <span id="arcades">0</span></p>
     
     <button onclick="earnScore()">Click to Earn Score</button>
     <button onclick="buyBlock()">Click to Buy Blocks</button>
@@ -21,16 +20,13 @@
     <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
-    <button onclick="buyArcades()">Buy Arcades </button>
     <button onclick="showPresent()">Click for Present</button>
       <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
     
     <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
-    <img id="ArcadesImage" src="Ra.png" alt="Arcades" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
-      <audio id="Song" src="craft.mp3"></audio>
 <style>
         /* Style for the present image */
         #presentImage {
@@ -39,14 +35,12 @@
 </style>
     <script>
         let score = 0;
-        let arcades = 0;
         let houses = 0;
         let graves = 0;
         let jobs = 0;
         let blocks = 0;
         let factories = 0;
         let houseCost = 100;
-        let arcadesCost = 1;
         let graveCost = 50000000000000000
         let jobCost = 50;
         let factoriesCost = 10;
@@ -74,8 +68,11 @@
                                                              if (blocks > 50) {
                          score+=100000000000;}
                                                                          if (blocks > 100) {
-                         score+=100000000000000;}
-                                                                            
+                         score+=1000000000000;}
+                                                                   if (jobs > 1000) {
+                         score+=1000000000;}    
+                                                                                                                                    if (factories > 50) {
+                         jobs+=10;}
                                                                         
         else {
                 score++;}
@@ -115,19 +112,6 @@ function showPresent() {
                 changeHouseImage(); // Call the function to change house image
             } else {
                 alert("Not enough score to buy a house!");
-            }
-        }
-           function buyArcades() {
-            if (score >= arcadesCost) {
-                score -= arcadesCost;
-                arcades++;
-                arcadesCost += 1; // Increase arcade cost
-                updateDisplay();
-                showArcadesImage();
-                playSong();
-                changeArcadesImage()
-            } else {
-                alert("Not enough $core broh to craft some mines");
             }
         }
         
@@ -183,10 +167,9 @@ function showPresent() {
             "Collect $core, and then buy a job.",
             "When you have enough jobs, your score can go up by a number!",
             "If you click to buy a house, you have the ability to buy blocks. It takes a lot of houses to buy blocks so good luck!",
-            "If it ever gets boring, click to get a free image (present)",
-            "Jobs cost 50 $core and that goes up, Houses cost 100 $core and that also goes up",
-            "Along the way you could buy blocks and factories but those are expensive. Best to buy them when you have enough $core",
-            "Whenever you want, you can buy a arcade. They are cheap so its easy. They dont necessarily add score or anything but they do make a fun sound!",
+            "If it ever gets boring click to get a free image (present)",
+         "Jobs cost 50 $core and Houses cost 100 $core",
+         "Along the way you could buy the factories and blocks but you'll need a lot of jobs",
             "Your goal is to buy a Gravestone, But it's hard so good luck!"
         ];
 
@@ -218,7 +201,6 @@ function showPresent() {
              document.getElementById("blocks").textContent = blocks;
             document.getElementById("jobs").textContent = jobs;
              document.getElementById("factories").textContent = factories;
-            document.getElementById("arcades").textContent = arcades;
         }
 
         function showHouseImage() {
@@ -228,20 +210,10 @@ function showPresent() {
         function playSpecialSong() {
             document.getElementById("specialSong").play();
         }
-         function playSong() {
-            document.getElementById("Song").play();
-        }
-         function showArcadesImage() {
-            document.getElementById("ArcadesImage").style.display = "block";
-        }
 
         function changeHouseImage() {
             // Replace the image source with the new house image
             document.getElementById("houseImage").src = "R.png";
-            
-        function changeArcadesImage() {
-            // Replace the image source with the new house image
-            document.getElementById("ArcadesImage").src = "Ra.png";
         }
     </script>
 </body>
