@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Somethings-Sus</h1>
-    <p>$$$: <span id="score">0</span></p>
+    <p>$core: <span id="score">0</span></p>
     <p>Houses: <span id="houses">0</span></p>
     <p>Gravestone: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
@@ -21,6 +21,8 @@
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
     <button onclick="showPresent()">Click for Present</button>
+      <button id="instructionButton">Show Instructions</button>
+    <div id="instructions"></div>
     
     <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
@@ -154,7 +156,35 @@ function showPresent() {
         alert("Not enough score to buy a job!");
     }
 }
+    const instructions = [
+            "Welcome to the game! Click the $core button to start.",
+            "Collect $core, and then buy a job.",
+            "When you have enough jobs, your score can go up by a number!",
+            "If you click to buy a house, you have the ability to buy blocks. It takes a lot of houses to buy blocks so good luck!",
+            "If it ever gets boring click to get a free image (present)",
+            "Your goal is to buy a Gravestone, But it is hard so good luck!"
+        ];
 
+        let currentIndex = 0;
+        let isShowingInstructions = false;
+
+        const instructionButton = document.getElementById("instructionButton");
+        const instructionsDiv = document.getElementById("instructions");
+
+        instructionButton.addEventListener("click", () => {
+            if (isShowingInstructions) {
+                // Hide instructions
+                instructionsDiv.textContent = "";
+                instructionButton.textContent = "Show Instructions";
+                isShowingInstructions = false;
+            } else {
+                // Show next instruction
+                instructionsDiv.textContent = instructions[currentIndex];
+                instructionButton.textContent = "Next Instruction";
+                currentIndex = (currentIndex + 1) % instructions.length;
+                isShowingInstructions = true;
+            }
+        });
 
         function updateDisplay() {
             document.getElementById("score").textContent = score;
