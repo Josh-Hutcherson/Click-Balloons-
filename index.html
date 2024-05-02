@@ -21,14 +21,14 @@
     <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
-    <button onclick="buyArcades()">Buy Arcade </button>
+    <button onclick="buyArcades()">Buy Arcades </button>
     <button onclick="showPresent()">Click for Present</button>
       <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
     
     <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
-    <img id="ArcadeImage" src="Ra.png" alt="Arcades" style="display: none;">
+    <img id="ArcadesImage" src="Ra.png" alt="Arcades" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
       <audio id="Song" src="craft.mp3"></audio>
 <style>
@@ -123,9 +123,9 @@ function showPresent() {
                 arcades++;
                 arcadesCost += 1; // Increase arcade cost
                 updateDisplay();
-                showArcadeImage();
+                showArcadesImage();
                 playSong();
-                changeArcadeImage()
+                changeArcadesImage()
             } else {
                 alert("Not enough $core broh to craft some mines");
             }
@@ -231,17 +231,17 @@ function showPresent() {
          function playSong() {
             document.getElementById("Song").play();
         }
-         function showArcadeImage() {
-            document.getElementById("ArcadeImage").style.display = "block";
+         function showArcadesImage() {
+            document.getElementById("ArcadesImage").style.display = "block";
         }
 
         function changeHouseImage() {
             // Replace the image source with the new house image
             document.getElementById("houseImage").src = "R.png";
             
-        function changeArcadeImage() {
+        function changeArcadesImage() {
             // Replace the image source with the new house image
-            document.getElementById("ArcadeImage").src = "Ra.png";
+            document.getElementById("ArcadesImage").src = "Ra.png";
         }
     </script>
 </body>
