@@ -21,7 +21,7 @@
     <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
-      <button onclick="buyArcades()">Buy Arcade 🎮</button>
+    <button onclick="buyArcades()">Buy Arcade 🎮</button>
     <button onclick="showPresent()">Click for Present</button>
       <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
@@ -74,11 +74,8 @@
                                                              if (blocks > 50) {
                          score+=100000000000;}
                                                                          if (blocks > 100) {
-                         score+=1000000000000;}
-                                                                   if (jobs > 1000) {
-                         score+=1000000000;}    
-                                                                                                                                    if (factories > 50) {
-                         jobs+=10;}
+                         score+=100000000000000;}
+                                                                            
                                                                         
         else {
                 score++;}
@@ -124,7 +121,7 @@ function showPresent() {
             if (score >= arcadesCost) {
                 score -= arcadesCost;
                 arcades++;
-                arcadesCost += 1; // Increase house cost
+                arcadesCost += 1; // Increase arcade cost
                 updateDisplay();
                 showArcadeImage();
                 playSong();
@@ -190,7 +187,7 @@ function showPresent() {
             "Jobs cost 50 $core and that goes up, Houses cost 100 $core and that also goes up",
             "Along the way you could buy blocks and factories but those are expensive. Best to buy them when you have enough $core",
             "Whenever you want, you can buy a arcade. They are cheap so its easy. They dont necessarily add score or anything but they do make a fun sound!",
-            "Your goal is to buy a Gravestone, But it is hard so good luck!"
+            "Your goal is to buy a Gravestone, But it's hard so good luck!"
         ];
 
         let currentIndex = 0;
