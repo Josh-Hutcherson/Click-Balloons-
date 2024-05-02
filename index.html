@@ -46,7 +46,7 @@
         let blocks = 0;
         let factories = 0;
         let houseCost = 100;
-        let arcadeCost = 1;
+        let arcadesCost = 1;
         let graveCost = 50000000000000000
         let jobCost = 50;
         let factoriesCost = 10;
@@ -121,10 +121,10 @@ function showPresent() {
             }
         }
            function buyArcades() {
-            if (score >= arcadeCost) {
-                score -= arcadeCost;
+            if (score >= arcadesCost) {
+                score -= arcadesCost;
                 arcades++;
-                arcadeCost += 1; // Increase house cost
+                arcadesCost += 1; // Increase house cost
                 updateDisplay();
                 playSong();
                 changeArcadeImage()
