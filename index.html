@@ -41,7 +41,7 @@
         let blocks = 0;
         let factories = 0;
         let houseCost = 100;
-        let graveCost = 500000000000000
+        let graveCost = 50000000000000000
         let jobCost = 50;
         let factoriesCost = 10;
         let blocksCost= 10;
@@ -67,8 +67,12 @@
                          score+=10000000;}
                                                              if (blocks > 50) {
                          score+=100000000000;}
+                                                                         if (blocks > 100) {
+                         score+=1000000000000;}
                                                                    if (jobs > 1000) {
                          score+=1000000000;}    
+                                                                                                                                    if (factories > 50) {
+                         jobs+=10;}
                                                                         
         else {
                 score++;}
