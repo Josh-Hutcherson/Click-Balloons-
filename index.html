@@ -24,6 +24,8 @@
     <button onclick="showPresent()">Click for Present</button>
       <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
+    <button onclick="playSound('craft.mp3');">Play</button>
+<div id="sound"></div>
     
     <img id="presentImage" alt="Present" src="" width="200">
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
@@ -85,6 +87,10 @@
                 score++;}
             updateDisplay();
         }
+         function playSound(url) {
+    const audio = new Audio(url);
+    audio.play();
+  }
 function showPresent() {
             // Simulate waiting for 5 minutes (300000 milliseconds)
             setTimeout(function() {
