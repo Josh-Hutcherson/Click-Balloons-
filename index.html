@@ -12,6 +12,7 @@
     <p>Gravestone: <span id="gravestone">0</span></p>
     <p>Jobs: <span id="jobs">0</span></p>
     <p>Blocks: <span id="blocks">0</span></p>
+    <p>Arcade: <span id="arcades">0</span></p>
     <p>Factories: <span id="factories">0</span></p>
     
     <button onclick="earnScore()">Click to Earn Score</button>
@@ -20,6 +21,7 @@
     <button onclick="buyGrave()">Buy a Gravestone</button>
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
+     <button onclick="buyArcades()">Play the Arcade</button>
     <button onclick="showPresent()">Click for Present</button>
       <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
@@ -35,14 +37,16 @@
 </style>
     <script>
         let score = 0;
+        let arcades = 0;
         let houses = 0;
         let graves = 0;
         let jobs = 0;
         let blocks = 0;
         let factories = 0;
         let houseCost = 100;
-        let graveCost = 50000000000000000
+        let graveCost = 50000000000000000;
         let jobCost = 50;
+        let arcadesCost = 1;
         let factoriesCost = 10;
         let blocksCost= 10;
 
@@ -120,6 +124,19 @@ function showPresent() {
                 alert("Not enough score to buy a house!");
             }
         }
+         function buyArcades() {
+            if (score >= arcadesCost) {
+                score -= arcadesCost;
+                arcades++;
+                arcadesCost += 1; // Increase house cost
+                updateDisplay();
+                showHouseImage();
+                playSpecialSong();
+                changeHouseImage(); // Call the function to change house image
+            } else {
+                alert("Cant craft some mines yet broh!");
+            }
+        }
         
         function buyBlock() {
             if (houses >= blocksCost) {
@@ -174,8 +191,9 @@ function showPresent() {
             "When you have enough jobs, your score can go up by a number!",
             "If you click to buy a house, you have the ability to buy blocks. It takes a lot of houses to buy blocks so good luck!",
             "If it ever gets boring click to get a free image (present)",
-         "Jobs cost 50 $core and Houses cost 100 $core",
-         "Along the way you could buy the factories and blocks but you'll need a lot of jobs",
+             "Jobs cost 50 $core and Houses cost 100 $core",
+             "Along the way you could buy the factories and blocks but you'll need a lot of jobs",
+        "if It sometimes gets more boring, play the arcade which costs 1 $core! (doesnt have a game , but makes a fun sound!),
             "Your goal is to buy a Gravestone, But it's hard so good luck!"
         ];
 
