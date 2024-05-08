@@ -22,7 +22,7 @@
     <button onclick="buyJob()">Buy Job</button>
     <button onclick="buyFactories()">Buy Factory</button>
     <button onclick="showPresent()">Click for Present</button>
-      <button id="instructionButton">Show Instructions</button>
+    <button id="instructionButton">Show Instructions</button>
     <div id="instructions"></div>
    
     
@@ -30,9 +30,9 @@
     <img id="houseImage" src="house.png" alt="House" style="display: none;">
     <audio id="specialSong" src="whistle.mp3"></audio>
 <style>
-        /* Style for the present image */
+    
         #presentImage {
-            display: none; /* Initially hidden */
+            display: none; 
         }
 </style>
     <script>
@@ -74,12 +74,14 @@
                                                                                        if (jobs > 1000) {
                          score+=1000000000;}    
                                                                                              if (factories > 50) {
-                          score+=10000000000000;}
+                         score+=10000000000000;}
                                                                                                  if (factories > 55) {
-                          jobs+=100;}
-                                                                                                      if (blocks > 100) {
+                         jobs+=100;}
+                                                                                                          if (factories > 150) {
+                         score+=1000000000000000;}
+                                                                                                                  if (blocks > 100) {
                          score+=100000000000000;}    
-                                                                                                          if (score > 25782299219905784) {
+                                                                                                                      if (score > 25782299219905784) {
                          jobs+=100;}    
  
         else {
@@ -91,7 +93,6 @@
     audio.play();
   }
 function showPresent() {
-            // Simulate waiting for 5 minutes (300000 milliseconds)
             setTimeout(function() {
                 const presents = [
                 "gift1.jpg",
@@ -100,29 +101,26 @@ function showPresent() {
                 "gift4.jpg",
                 "gift5.jpg",
                 "Ra.jpg"
-                    // Add more image filenames here
                 ];
                 const randomIndex = Math.floor(Math.random() * presents.length);
                 const randomPresent = presents[randomIndex];
 
-                // Display the present image
                 const presentImage = document.getElementById("presentImage");
                 presentImage.src = randomPresent;
                 presentImage.style.display = "block";
-
-                // Show an alert
+                
                 alert("Here's a present!");
-            }, 50); // 5 seconds in milliseconds
+            }, 50);
         }
         function buyHouse() {
             if (score >= houseCost) {
                 score -= houseCost;
                 houses++;
-                houseCost += 100; // Increase house cost
+                houseCost += 100; 
                 updateDisplay();
                 showHouseImage();
                 playSpecialSong();
-                changeHouseImage(); // Call the function to change house image
+                changeHouseImage(); 
             } else {
                 alert("Not enough score to buy a house!");
             }
@@ -132,7 +130,7 @@ function showPresent() {
             if (houses >= blocksCost) {
                 houses -= blocksCost;
                 blocks++;
-                blocksCost += 10; // Increase blocks cost
+                blocksCost += 10; 
                 updateDisplay();
             } else {
                 alert("Not enough Houses to buy a block!");
@@ -142,7 +140,7 @@ function showPresent() {
             if (jobs >= factoriesCost) {
                 jobs -= factoriesCost;
                 factories++;
-                factoriesCost += 10; // Increase blocks cost
+                factoriesCost += 10; 
                 updateDisplay();
             } else {
                 alert("Not enough Jobs to build a factory!");
@@ -152,12 +150,12 @@ function showPresent() {
             if (score >= graveCost) {
                 score -= graveCost;
                 graves++;
-                graveCost += 50000000; // Increase grave cost
+                graveCost += 50000000; 
                 updateDisplay();
                 alert("You've won! Your now ready to die!");
                 setTimeout(function() {
-    window.location.reload();
-}, 50); // Reloads the page
+                window.location.reload();
+                }, 50); 
 
             } else {
                 alert("Your not ready to die.");
@@ -168,8 +166,8 @@ function showPresent() {
     if (score >= jobCost) {
         score -= jobCost;
         jobs++;
-        jobCost += 50; // Increase job cost
-        score += 10; // Increase score by 10 (adjust this value as needed)
+        jobCost += 50;
+        score += 10; 
         updateDisplay();
     } else {
         alert("Not enough score to buy a job!");
@@ -181,8 +179,8 @@ function showPresent() {
             "When you have enough jobs, your score can go up by a number!",
             "If you click to buy a house, you have the ability to buy blocks. It takes a lot of houses to buy blocks so good luck!",
             "If it ever gets boring click to get a free image (present)",
-         "Jobs cost 50 $core and Houses cost 100 $core",
-         "Along the way you could buy the factories and blocks but you'll need a lot of jobs",
+            "Jobs cost 50 $core and Houses cost 100 $core",
+            "Along the way you could buy the factories and blocks but you'll need a lot of jobs",
             "Your goal is to buy a Gravestone, But it's hard so good luck!"
         ];
 
@@ -194,12 +192,10 @@ function showPresent() {
 
         instructionButton.addEventListener("click", () => {
             if (isShowingInstructions) {
-                // Hide instructions
                 instructionsDiv.textContent = "";
                 instructionButton.textContent = "Show Instructions";
                 isShowingInstructions = false;
             } else {
-                // Show next instruction
                 instructionsDiv.textContent = instructions[currentIndex];
                 instructionButton.textContent = "Next Instruction";
                 currentIndex = (currentIndex + 1) % instructions.length;
@@ -210,10 +206,10 @@ function showPresent() {
         function updateDisplay() {
             document.getElementById("score").textContent = score;
             document.getElementById("houses").textContent = houses;
-              document.getElementById("gravestone").textContent = graves;
-             document.getElementById("blocks").textContent = blocks;
+            document.getElementById("gravestone").textContent = graves;
+            document.getElementById("blocks").textContent = blocks;
             document.getElementById("jobs").textContent = jobs;
-             document.getElementById("factories").textContent = factories;
+            document.getElementById("factories").textContent = factories;
         }
 
         function showHouseImage() {
@@ -225,7 +221,6 @@ function showPresent() {
         }
 
         function changeHouseImage() {
-            // Replace the image source with the new house image
             document.getElementById("houseImage").src = "R.png";
         }
     </script>
